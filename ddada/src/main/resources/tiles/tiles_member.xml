@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <!-- <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" /> -->
+      <put-attribute name="sideleft" value="" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="sideright" value="" />
+      <put-attribute name="fixedbar" value="/WEB-INF/views/common/fixedBar.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+
+   <definition name="main" extends="baseLayout">
+      <put-attribute name="title" value="IT 자격증은 Ddada 에서!" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+   </definition>
+
+
+   <definition name="/member/listMembers" extends="baseLayout">
+      <put-attribute name="title" value="회원목록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/listMembers.jsp" />
+   </definition>
+
+   <definition name="/member/loginForm" extends="baseLayout">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+   </definition>
+
+   <definition name="/member/memberForm" extends="baseLayout">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+   </definition>
+   
+   <definition name="/member/adminPage" extends="baseLayout">
+      <put-attribute name="title" value="Ddada 관리자 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/member/adminPage.jsp" />
+   </definition>
+   
+   <definition name="/member/adminInsert" extends="baseLayout">
+      <put-attribute name="title" value="Ddada 관리자 회원추가" />
+      <put-attribute name="body" value="/WEB-INF/views/member/adminInsert.jsp" />
+   </definition>
+   
+    <definition name="/member/adminUpdate" extends="baseLayout">
+      <put-attribute name="title" value="관리자 회원수정" />
+      <put-attribute name="body" value="/WEB-INF/views/member/adminUpdate.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+   </definition>
+   
+   
+   
+   
+   <definition name="/member/modProfile" extends="baseLayout">
+      <put-attribute name="title" value="프로필 설정" />
+      <put-attribute name="body" value="/WEB-INF/views/member/modProfile.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+   </definition>
+   
+   <definition name="/member/modMemberForm" extends="baseLayout">
+      <put-attribute name="title" value="회원 정보 수정" />
+      <put-attribute name="body" value="/WEB-INF/views/member/modMemberForm.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+   </definition>
+   
+   
+   <!-- 태훈 파트 -->
+   <definition name="lecture" extends="baseLayout">
+      <put-attribute name="title" value="강좌 Ddada" />
+      <put-attribute name="body" value="/WEB-INF/views/lecture.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideLec.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+   </definition>
+   
+   <definition name="member/Information1" extends="baseLayout">
+      <put-attribute name="title" value="상세 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/member/Information1.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideLec.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+   </definition>
+   
+     <definition name="member/video" extends="baseLayout">
+      <!-- <put-attribute name="title" value="강의 페이지" /> -->
+      <put-attribute name="body" value="/WEB-INF/views/member/video.jsp" />
+      <put-attribute name="header" value="" />
+      <!-- <put-attribute name="sideleft" value="/WEB-INF/views/common/sideLec.jsp" /> -->
+      <put-attribute name="footer" value="" />
+      <put-attribute name="fixedbar" value="" />
+   </definition>
+   
+   
+   <!-- 민상 파트 -->
+    <definition name="/member/payment" extends="baseLayout">
+      <put-attribute name="title" value="바로구매" />
+      <put-attribute name="body" value="/WEB-INF/views/member/payment.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+    </definition>
+    
+    <definition name="/member/mainPractice2" extends="baseLayout">
+      <put-attribute name="title" value="바로구매" />
+      <put-attribute name="body" value="/WEB-INF/views/member/mainPractice2.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideBook.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+    </definition>
+
+    <definition name="/member/basket" extends="baseLayout">
+      <put-attribute name="title" value="구매" />
+      <put-attribute name="body" value="/WEB-INF/views/member/basket.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideBook.jsp" />
+      <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+    </definition>
+    
+   
+<!--    <definition name="/member/payment" extends="baseLayout">
+      <put-attribute name="title" value="장바구니" />
+      <put-attribute name="body" value="/WEB-INF/views/member/.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideBook.jsp" />
+   </definition> -->
+   
+   
+
+</tiles-definitions>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="id" />
+        <result property="pwd" column="pwd" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap>
+	
+	<resultMap id="memResultTest" type="memberVOTest">
+		<result property="id" column="id" />
+        <result property="pwd" column="pwd" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="address" column="address" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap>
+	
+	<resultMap id="studentResult" type="studentVO">
+		<result property="STUDENT_ID" column="STUDENT_ID" />
+        <result property="STUDENT_PWD" column="STUDENT_PWD" />
+        <result property="STUDENT_NAME" column="STUDENT_NAME" />
+        <result property="STUDENT_PHONE" column="STUDENT_PHONE" />
+        <result property="STUDENT_EMAIL" column="STUDENT_EMAIL" />
+        <result property="STUDENT_ADDR" column="STUDENT_ADDR" />
+        <result property="STUDENT_JOINDATE" column="STUDENT_JOINDATE" />
+	</resultMap>
+
+	<insert id="insertStudent" parameterType="studentVO">
+		<![CDATA[
+		 insert into USERS(STUDENT_ID, STUDENT_PWD, STUDENT_NAME, STUDENT_PHONE, STUDENT_EMAIL, STUDENT_ADDR)
+		 values(#{STUDENT_ID}, #{STUDENT_PWD}, #{STUDENT_NAME}, #{STUDENT_PHONE}, #{STUDENT_EMAIL}, #{STUDENT_ADDR})
+		]]>      
+	</insert>
+   
+   <update id="updateStudent">
+     <![CDATA[
+	     update USERS
+	     set STUDENT_PWD=#{STUDENT_PWD}, STUDENT_EMAIL=#{STUDENT_EMAIL}, STUDENT_PHONE=#{STUDENT_PHONE}, STUDENT_ADDR=#{STUDENT_ADDR}
+	     where STUDENT_ID=#{STUDENT_ID}
+      ]]>      
+   </update>
+   
+  <select id="selectStudent"  parameterType="String" resultType="studentVO">
+	<![CDATA[
+	   select * from USERS
+	   where STUDENT_ID=#{STUDENT_ID}
+	]]>      
+  </select>
+  
+  <delete id="deleteStudent"  parameterType="String">
+	<![CDATA[
+	   delete from USERS
+	   where STUDENT_ID=#{STUDENT_ID}
+	]]>      
+  </delete>
+
+    <select id="loginByStudentId"  resultType="studentVO"   parameterType="studentVO" >
+	<![CDATA[
+		select * from USERS
+		where STUDENT_ID=#{STUDENT_ID} and STUDENT_PWD=#{STUDENT_PWD}		
+	]]>
+    </select>
+    
+    <!-- 태훈 파트 -->
+    <select id="getList" resultType="LectureVO">
+      select * from lecture
+   </select>
+   
+   <!-- 상세보기 -->
+   <select   id="detail" resultType="LectureVO">
+      select * from lecture where lec_num = #{lec_num}
+   </select>
+   
+   
+   <!-- 동영상보기 -->
+   <select   id="getvideo" resultType="LectureVO">
+      select * from lecture where lec_num = #{lec_num}
+   </select>
+   
+   <select   id="detail2" resultType="LectureVO">
+      select cur_subt as comA, cur_subt as comB, cur_subt as comC, cur_kinds from curriculum 
+   	  where cur_kinds = '컴활필기' or cur_kinds = '컴활필기1급'
+      ORDER BY cur_num ASC
+   </select>
+
+   <select id="curlist" resultType="LectureVO" >
+	   select l.lec_name, l.LEC_SUB_NAME, c.cur_subj, c.cur_subt, c.cur_kinds, c.subject_name
+	   from lecture l inner join curriculum c
+	   on l.lec_num = c.subject_code
+	   order by cur_num ASC
+   </select>
+   
+   <insert id="insertNewLecture"  parameterType="java.util.Map">
+		<![CDATA[
+			INSERT into TAKE_LECTURE_LIST(LEC_NUM, LEC_NAME, INSTR_NUM, INSTR_NAME,
+			LEC_FEE, LEC_DATE, LEC_STARTDATE, LEC_ENDDATE,
+			BOOK_NUM, BOOK_NAME, LEC_IMAGE, STUDENT_ID)
+			VALUES(#{lec_num}, #{lec_name}, #{instr_num}, #{instr_name},
+				   #{lec_fee}, TO_NUMBER(#{lec_date}), sysdate, sysdate+TO_NUMBER(#{lec_date}),
+				   #{book_num}, #{book_name}, #{INSTR_IMG}, #{STUDENT_ID})
+		]]>
+   </insert>
+   
+   <select id="reviewlecture" resultType="UserReviewVO">
+      select * from user_review_list
+   </select>
+   
+   
+   
+   
+	<!-- 민상 파트 -->
+	
+	
+	  <resultMap id = "takeBookResult" type="takeBookVO">
+        <result property = "BOOK_NUM" column = "BOOK_NUM"/>
+        <result property = "BOOK_NAME" column = "BOOK_NAME"/>
+        <result property = "BOOK_PRICE" column = "BOOK_PRICE"/>
+        <result property = "BOOK_PAGE" column = "BOOK_PAGE"/>
+        <result property = "BOOK_COMPANY" column = "BOOK_COMPANY"/>
+        <result property = "LEC_NUM" column = "LEC_NUM"/>
+        <result property = "LEC_NAME" column = "LEC_NAME"/>
+        <result property = "INSTR_NUM" column = "INSTR_NUM"/>
+        <result property = "INSTR_NAME" column = "INSTR_NAME"/>
+        <result property = "BOOK_IMAGE" column = "BOOK_IMAGE"/>
+     </resultMap>
+     
+     <select id = "selectAllTakeBookList" resultMap = "takeBookResult">
+        <![CDATA[
+           SELECT *    
+           FROM BOOK          
+        ]]>
+     
+     
+     </select>
+     
+     <select id = "selectTakeList" resultType = "takeBookVO">
+        SELECT *
+        FROM BOOK
+        WHERE BOOK_NUM = #{BOOK_NUM}
+     </select> 
+     
+     
+     <select id = "selectTake" resultType = "takeBookVO">
+        SELECT *
+        FROM BOOK
+        WHERE BOOK_NUM = #{BOOK_NUM}
+     </select> 
+ 
+ 
+	   <select id = "select" resultType = "takeBookVO">
+	      SELECT *
+	      FROM BOOK
+	   </select>
+
+	
+
+   
+   <!-- 관리자 파트 -->
+   <resultMap id="instructorResult" type="instructorVO">
+      	<result property="INSTR_NUM" column="INSTR_NUM" />
+        <result property="INSTR_NAME" column="INSTR_NAME" />
+   </resultMap>
+   
+   <select id="selectAllInstructorList" resultMap="instructorResult">
+      <![CDATA[
+         select * from INSTRUCTOR order by INSTR_NUM ASC    
+      ]]>
+   </select>
+   
+   <select id="selectAllStudentList" resultMap="studentResult">
+      <![CDATA[
+         select * from USERS
+         order by student_joinDate desc
+      ]]>
+	</select>
+	
+	
+	
+	<insert id="adminInsert" parameterType="studentVO" >
+      
+       insert into USERS
+       (
+       STUDENT_ID ,
+        STUDENT_PWD , 
+       STUDENT_NAME , 
+       STUDENT_PHONE ,
+        STUDENT_EMAIL ,
+         STUDENT_ADDR ,
+        STUDENT_JOINDATE 
+        )
+       values
+       (
+       #{STUDENT_ID}, 
+       #{STUDENT_PWD},
+       #{STUDENT_NAME}, 
+       #{STUDENT_PHONE},
+       #{STUDENT_EMAIL},
+       #{STUDENT_ADDR}, 
+       SYSDATE
+       )
+          
+   </insert>
+	
+	
+	
+	
+
+</mapper>

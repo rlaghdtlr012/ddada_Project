@@ -1,0 +1,964 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+   request.setCharacterEncoding("UTF-8");
+%>     
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+  
+<title>결제</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" href="${contextPath}/resources/bs_classroom.css">
+   
+ 
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
+
+
+
+<style>
+	
+	
+	
+	
+	  body{
+			font-size :1em;
+			color : #555;
+			
+		}
+	
+	@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+      *{
+      	font-family : 'JUA', sans-serif;
+      }
+	
+	
+	 #container {
+        width: 100%;
+        margin: 0px auto;
+          text-align:center;
+        border: 0px solid #bcbcbc;
+      }
+      #header {
+        /* padding: 5px; */
+        m
+rgin-bottom: 5px;
+        border: 0px solid #bcbcbc;
+         /* background-color: lightgreen; */
+      }
+      #sidebar-left {
+        width: 15%;
+        height:700px; 
+        padding: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        float: left;
+         background-color: #FFFFFF;
+        border: 0px solid #bcbcbc;
+        font-size:20px;
+      }
+      #content {
+        width: 75%;
+        padding: 5px;
+        margin-right: 5px;
+        float: left;
+        border: 0px solid #bcbcbc;
+      }
+      #footer {
+        clear: both;
+        padding: 5px;
+        border: 0px solid #bcbcbc;
+         background-color: lightblue;
+      }
+      
+      table, th, td{
+      	border : 2px solid black;
+      	border-collapse : collapse; 
+      }
+	
+	   body{
+			font-size : 0.75em;
+			color : #555;
+			
+		}
+	
+	
+	
+		
+		.photoms{
+			box-sizing : content-box;					
+			width : 170px;
+			height : 150px;
+			float : left;
+			margin : 20px 10px 10px 5px;
+		}
+		
+		.boxms{
+			box-sizing : content-box;
+			position : relative;
+			width : 890px;
+			min-height : 200px;
+			height : auto;
+			overflow : hidden;
+			display : block;
+			border : 1px solid #d9d9d9;
+			vertical-align : top;
+			margin : 15px auto;
+		
+		}
+		
+		.detail01{
+			box-sizing : content-box;
+			width : 610px;
+			margin : 20px 10px 10px;
+			float : left;
+		
+		}
+		
+		.detail02{
+			box-sizing : centent-box;
+			width : 402px;
+			position : relative;
+			margin : 15px 10px 0px 140px;
+			padding-bottom : 10px;
+			float : right;
+		}
+		
+		table{
+			display : table;
+			border-collapse : separate;
+			text-indent : initial;
+			border-color : grey;
+		
+		}
+		.price{
+			width : 43%
+			padding : 0px;
+			margin : 0px;
+			height : 22px;
+			overflow : hidden;
+			vertical-align : top;
+			box-sizing : content-box;
+		}
+		
+		.overline{
+			box-sizing : content-box;
+			font-family : Verdana, Arial, Helvetica, sans-serif;
+			text-align : right;
+		}
+		
+		
+		
+		
+		
+		.numbox{
+			float : right;
+			border : 1px solid #cdcdcd;
+			margin : 0 10px 0 0;
+			width: 71px;
+			display : block;
+			height : 50px;
+		}
+		
+		.moniternum{
+			float : left;
+			text-align : left;
+			display : block;
+		}
+		
+		.num3ms{
+			border : 0;
+			padding : 10px 5px 10px 5px;
+			font-size : 16px;
+			margin : 0px;
+			color : #222;
+			width : 36px;
+			float : left;
+			
+		}
+		
+		.imgbox1ms{
+			float: right;
+			text-align : center;
+			border : 0; 
+			margin : 0;
+			padding : 1px 0;
+			width : 23px;
+			background : #f8f8f8;
+			border-left : 1px solid #cdcdcd;
+			display : block;
+		}
+		
+		.upim{
+			width : 13px;
+			height : 19px;
+			text-align : right;
+			border : none; 
+			margin : 0;
+			padding : 0;
+			cursor : pointer;			
+		}
+		.downim{
+			width : 13px;
+			height : 19px;
+			text-align : right;
+			border : none;
+			margin : 0;
+			padding : 0;
+			cursor : pointer;
+		}
+		
+		.booknum{
+			width : 20px;
+			height : 50px;
+		
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	*{
+		margin :0;
+		padding : 0; 
+	}
+	 .carousel-inner > .carousel-item > img {
+       /* border-color:blue; */
+       width : 100%;
+       /* height: 100%; */
+    }
+	body{
+		font-size : 14px;
+		line-height : 1.5;
+		color : #666;
+		letter-spacing : 0;
+	}
+	
+	.1_order{
+		position : relative;		
+		height : 88px;
+		box-shadow : 0 1px 2px 0 rgb(0 0 0 / 6%), 0 2px 12px 0 rgb(0 0 0 / 3%);
+		z-index : 10;
+	}
+	.b_order{
+		width: 1240px;
+   		height: 44px; 
+  		margin: 0 auto;
+    	/* padding: 22px 0; */
+	}
+	.c_order_title{
+		position : relative;
+	}
+	.c_order_title_style_1{
+		/* float : left; */
+	}
+	.c_order_header{
+		font-size : 32px;
+		float : left;
+		position : absolute;
+		left : 306px;
+	}
+	.c_order_step{
+		floaa : right;		
+	}
+	.step{
+		overflow: hidden;
+   		height: 42px;
+    	border-radius: 25px;
+   		border: 1px solid #eee;
+	}
+	dl, ul, ol, menu, li{
+		list-style : none;
+	}
+	.number{
+		font-weight : bold;
+		font-size : 22px;
+	}
+	.stamp{
+		float : right;
+		min-width : 80px;
+		padding : 10px 15px 11px 15px;
+		font-size : 14px;
+		line-height : 21px;
+		color : #333;
+		letter-spacing : 0;
+		
+		/* text-align : center; */
+	}
+	
+	ul{
+		margin-block-start: 1em;
+   	 	margin-block-end: 1em;
+    	margin-inline-start: 0px;
+    	margin-inline-end: 0px;
+   		padding-inline-start: 40px;
+   		width : 200px;	
+	}
+	
+	.1_order_content_warp{
+		
+		position: relative;
+    	width: 1240px;
+    	margin: 0 auto;
+    	zoom: 1;				
+	}
+	.b_order_info{
+		position: relative;
+    	width: 870px;
+    	margin-bottom: 45px;
+    	zoom : 1;
+	}
+	.c_order_title{
+		padding : 26px 0 16px 0;
+		/* height : 60px; */
+		border-bottom : 1px solid #999;
+		position : relative;
+		
+	}
+	
+	.c_order_title_under{
+		position : absolute;
+		left : 10px;
+		float : left;
+		font-size : 30px;
+		line-height : 10px; 
+	}	
+	
+	.nomember_notice{
+		float: left;
+    	padding-left: 110px;
+    	margin-top: -15px; 
+    	font-size: 24px;
+    	color: #111;
+    	line-height: 24px;
+	}
+	.delivery_info{
+		display : block;
+		margin-top : 25px;
+	}
+	
+	.c_direct_information{
+		zoom: 1;
+    	padding-bottom: 21px;   	
+    }
+    .title, .dil, .order , .pro{
+	    float: left;
+	    font-size: 18px;
+	    font-weight: bold;
+	    line-height: 27px;
+	    color: #111;
+    }
+    
+     .notice_sns{
+    	clear: both;
+    	width: 100%;
+   		padding-top: 40px;
+    	font-size: 14px;
+    	color: #999;
+    	line-height: 10px;
+    	position : absolute;
+    	left : -275px;
+	} 
+    
+    dl{
+    	display : block;
+    	margin-block-start: 1em;
+    	margin-block-end: 1em;
+   		margin-inline-start: 0px;
+    	margin-inline-end: 0px;
+    }
+    .field{
+    	margin-bottom: 15px;
+    	zoom: 1;
+    }
+    .skip{
+    	position: absolute;
+    	overflow: hidden;
+    	clip: rect(0 0 0 0);
+    	margin: -1px;
+    	width: 1px;
+    	height: 1px;
+    }
+	
+	.name{
+		 
+    	position : absolute;    
+    	top : 330px;
+    	left : 297px; 	
+   		float: left;
+    	width: 341px;
+     	height: 20px;     	
+    	padding: 13px 16px;
+    	border: 1px solid #ccc;
+    	font-size: 15px;
+    	font-weight: normal;
+    	line-height: 20px;
+    	color: #111;
+    	letter-spacing: 0;
+    	
+	}
+	.form_box{
+		float : left;
+	}
+	.c_order_selectbox{
+		display : inline;
+		float : left;
+		position : absolute;
+		top : 360px;
+		width : 90%;
+		border : 0px solid #ccc;
+  	  	margin: 10px auto;
+  	  	left : 292px;
+		
+	}
+	
+	.select{
+		width : 100px;
+		height : 25px;
+		padding-right : 32px;
+	}
+	
+	.first_phone{
+		overflow : visible;
+		margin : 0;
+		font-size : inherit;
+	}
+	.zero{
+		border: 0px solid red;
+	    float: left;
+	    width : 110px;
+		height : 25px;
+	    margin : 0;
+	    box-sizing: border-box;
+	}
+	.first{
+	    border: 0px solid black;
+	    float: left;
+	    margin : 0;
+	    width : 163px;
+		height : 25px;
+	    box-sizing: border-box;
+	    
+	}
+	
+	.second{
+	    border: 0px solid black;
+	    float: left;
+	    width : 163px;
+		height : 25px;
+	    margin : 0;
+	    box-sizing: border-box;
+	    position : relative;
+	}
+	
+	.field_direct_email{
+		display : inline;
+		float : left;
+		position : absolute;
+		top : 400px;
+		width : 90%;
+		border : 0px solid #ccc;
+  	  	margin: 10px auto;
+  	  	left : 297px;
+	}
+	
+	.zero0{
+		border: 0px solid red;
+	    float: left;
+	    width : 153px;
+		height : 25px;
+	    margin : 0;
+	    box-sizing: border-box;
+	}
+	
+	.first1{
+		border: 0px solid black;
+	    float: left;
+	    margin : 0;
+	    width : 35px;
+		height : 20px;
+	    box-sizing: border-box;
+	}
+	.second2{
+		border: 0px solid black;
+	    float: left;
+	    width : px;
+		height : 18px;
+	    margin : 0;
+	    box-sizing: border-box;
+	    position : relative;
+	}
+	
+	.nextmail{
+		width : 153px;
+		height : 25px;
+	}
+	 .deliver{
+		margin-top: 30px;
+    	padding-top: 27px;
+    	border-top: 1px solid #eee;
+    	display : block; 
+    	width : 872px;
+    	height : 427px;
+	
+    	
+	}
+	 .direct{
+		zoom : 1;
+		padding-bottom : 21px;
+		display : block;
+		width : 870px;
+		height : 48px; 
+	
+	}
+	 .c_order_selectbox1{
+		display : inline;
+		float : left;
+		position : absolute;
+		top : 660px;
+		width : 90%;
+		border : 0px solid #ccc;
+  	  	margin: 10px auto;
+  	  	left : 290px;
+	}
+	
+	.requestselect{
+		display : inline;
+		float : left;
+		position : absolute;
+		top : 700px;
+		width : 300px;
+		height : 25px;
+  	  	margin: 10px auto;
+  	  	left : 296px;
+	}
+	.order{
+		position: relative;
+   	 	width: 870px;
+    	margin-bottom: 45px;
+	} 
+	.notice_sns1{
+		clear: both;
+    	width: 100%;
+   		padding-top: 40px;
+    	font-size: 14px;
+    	color: #999;
+    	line-height: 10px;
+    	position : absolute;
+    	left : -255px;
+    	top : 155px;
+	}
+	.ordernum{
+		 position : absolute; 
+		 left : 740px; 
+		 top : 850px;
+		 font-size : 15px;
+	}
+	.cash{
+		font-size : 25px;
+		position : absolute; left : 810px; top : 845px;font-size : 25px;"
+	}
+	
+	.tab_container{
+		display: block;
+    	padding-top: 82px;
+    	padding-left: 1px;
+    	zoom: 1;
+	}
+	.tab_table{
+		position: relative;
+    	float: left;	
+    	width: 175px;
+    	height: 52px;
+    	margin: -1px 0 0 -1px
+	}
+	
+	.1_order_side{
+		position: absolute;
+    	top: 0;
+    	left: 50%;
+    	margin-left: 304px;
+    	right: 0;
+    	z-index: 1;
+    	width: 300px;
+    	padding-left: 20px;
+    	background-color: #fff;
+	}
+	
+	.benefit{
+		padding-bottom: 27px;
+    	border-bottom: 1px dashed #ddd;
+    	width : 300px;
+    	height : 69px;
+	}
+	.amount{
+		width : 300px;
+		height : 254px;
+	}
+	.expected{
+		width  : 300px;
+		height : 56px;
+		padding-top : 35px;
+		color : #ADD8E6;
+	}
+	.order_cash{
+		width : 300px;
+		height : 178px;
+	}
+	
+</style>
+</head>
+
+<body>
+
+
+    		
+    	
+	<div class = "content"> <!-- 전체 틀 -->
+		<div class = "1_order"> <!-- 주문결제 박스 시작 -->
+			
+			
+			<div class = "b_order"> <!--블럭 안에 블럭 -->
+				<div class = "c_order_title_ c_order_style_1"> <!-- 주문결제 왼쪽 -->
+					<h1 class = "c_order_header">
+					결제 및 배송
+					</h1>
+				</div>								
+			</div>
+			
+
+			<div class = "c_order_title">
+				<h2 class = "c_order_title_under">결제정보</h2>
+				<p class = "nomember_notice" style = "position : absolute; left : 310px;">
+					<span class = "nomember_notice">
+	 				</span>
+					       &#10071; 
+					       교재의 경우 5만원 이상 구매시 배송비 무료입니다.
+				</p>
+			
+			</div>
+			<div class = "order_content"> 	<!--  전체박스 -->
+				<div class = "delivery_info"> <!-- 주문자 정보 박스 -->
+					<div class = "c_direct_information">
+						<h3  class = "title">주문자 정보</h3>
+						<p class = "notice_sns">소셜 로그인 회원의 회원정보는 최초 주문자 정보(이름, 휴대폰 번호, 이메일)로 업데이트되며, 본인인증 또는 회원정보 변경을 통해 수정 가능합니다.</p>
+					</div>
+					<div class = "info">
+						<dl>
+							<div class = "field">
+								<dt class = "skip">주문자명</dt>
+								<div>
+									<input type = "text" class = "name" placeholder = "주문자명" title = "주문자명" style = "width : 153px;">
+								</div>																																
+							</div>
+							<div class = "form_box">
+								<dd>
+									<div class = "c_order_selectbox">
+										<div class = "zero">
+												<select name = "ordT1" class = "select">
+													<option>010</option>
+													<option>011</option>
+													<option>016</option>
+													<option>017</option>
+													<option>018</option>
+													<option>019</option>																														
+												</select> 
+										</div>
+										<div class="first">
+											<input type = "text" placeholder = "        핸드폰 앞자리">
+										</div>
+										<div class="second">											
+											<input type = "text" placeholder = "        핸드폰 뒷자리">
+										</div>
+										
+										<span>
+										<div class="form-check">
+										  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style = "position : absolute; left : 540px;">
+										  <label class="form-check-label" for="flexCheckDefault" style = "position : absolute; left : 550px;">	
+										  	SMS 수신 동의
+										  </label>
+										</div>
+										</span>
+										
+									</div>
+								
+								</dd>
+								
+							</div>
+							
+							<div class = "field_direct_email">
+								<dd>
+									<div class = "zero0">									
+										<input type = "text" placeholder = "이메일주소" class = "email">
+									</div>
+									<div class = "first1">
+										<span class = "at">@</span>
+									</div>
+									<div class = "second2">
+										<select class = "nextmail">
+											<option>직접입력</option>
+											<option>naver.com</option>
+											<option>hanmail.net</option>
+											<option>nate.com</option>
+											<option>gmail.com</option>
+											<option>yahoo.co.kr</option>
+										</select>
+									</div>
+								</dd>	
+																					
+							</div>
+							
+							
+								
+						</dl>																
+					</div>																				
+				</div> <!-- <!-- 주문자정보 박스 닫기 -->
+				<div>
+					<c:forEach var = "a" items = "${takeAaList}">
+						<tr>
+							<td>${a.AA_NAME}</td>
+							<td>${a.AA_NUMBER}</td>
+							<td>${a.AA_FOOD}</td>
+							
+						</tr>
+					</c:forEach>
+				</div>
+				<div class = "deliver"><!-- 배송정보 시작 -->
+					
+					
+					
+					
+					<div class = "direct">
+						<p style = "float : left; position : absolute; top : 480px; " class = "dil">배송지 (교재 구매시 입력) </p> 					
+					</div> 
+					<div class = "addres" style = "width : 870px; height : 351.2;">
+						<dl>
+							<div class = "feild">
+								<dd>
+									<dt class = "skip">받는사람</dt>
+									<input type = "text" placeholder = "받는사람" style = "position : absolute; top : 520px; left : 295px;" >
+								</dd>																		
+							</div>
+							<div class = "field">
+								<dd style = "position : absolute; left : 295px; top : 560px;">
+									<button type="button" class="btn btn-primary btn-sm">주소찾기</button>
+									<input type = "text" placeholder = "우편번호">								
+								</dd>
+							</div>
+							<div>
+								<dd>
+									<input type= "text" placeholder = "기본주소" style = "position : absolute; top : 600px; left : 295px; width : 300px;">	
+								</dd>
+							</div>
+							<div>
+								<dd>
+									<input type = "text" placeholder = "상세 주소 및 상세 건물명" style = "position : absolute; top : 630px; left : 295px; width : 300px;">
+								</dd>
+							</div>
+							
+							
+							<div class = "form_box">
+								<dd>
+									<div class = "c_order_selectbox1">
+										<div class = "zero">
+												<select name = "ordT1" class = "select">
+													<option>010</option>
+													<option>011</option>
+													<option>016</option>
+													<option>017</option>
+													<option>018</option>
+													<option>019</option>																														
+												</select> 
+										</div>
+										<div class="first">
+											<input type = "text" placeholder = "        핸드폰 앞자리">
+										</div>
+										<div class="second">											
+											<input type = "text" placeholder = "        핸드폰 뒷자리">
+										</div>
+										
+										<span>
+										<div class="form-check">
+										  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style = "position : absolute; left : 540px;">
+										  <label class="form-check-label" for="flexCheckDefault" style = "position : absolute; left : 550px;">	
+										  	SMS 수신 동의
+										  </label>
+										</div>
+										</span>
+										
+									</div>								
+								</dd>																																
+							</div>
+							<div>
+								<dd>
+									<select name = "request" class = "requestselect">
+										<option>배송시 요청사항 선택하기</option>
+										<option>직접 수령하겠습니다</option>
+										<option>문 앞에 놔주세요</option>
+										<option>경비실에 맡겨주세요</option>
+										<option>배송전 연락 부탁드려요</option>
+										<option>파손 위험이 있으니 조심히 다뤄주세요</option>
+									</select>
+								</dd>
+							</div>																											
+						</dl>
+					</div>																
+				</div>	<br>																			
+				
+				<!-- <div style = "height : 25px;"> -->
+				<h2 style = "font-size: 18px;font-weight: bold; line-height: 27px;  color: #111;    height : 27px; " class = "pro">주문상품</h2>
+				<!-- </div> -->
+				<br><br>
+							
+				<div class = "order">
+					
+					<!-- <div class = "title_order"> -->						
+						<p class = "notice_sns1">상품수량 및 옵션변경은 상품상세 또는 장바구니에서 가능합니다.</p>										
+					<!-- </div> -->	
+				</div>
+					
+					<div style = "border : 3px solid #ADD8E6; width : 730px;";>
+						<ul>
+							<li>																
+								<div style = "width : 230px; height : 180px; border-left : 0px;" ;><!-- 사진 -->
+									<image src = "data:image/jpeg;base64,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" style = "width : 135px; height : 145px;   position : absolute; left : 305px; top : 840px;">
+								</div>
+								<div><!-- 담는박스 -->
+									<div style = "width :230px; height : 180px;  display : inline; "><!-- 상세정보 -->
+										
+										<p style = " position : absolute; left : 450px; top : 890px;">정보처리기사 필기 입문서 <br> 기초이론(염수민)</p>
+									</div>
+									<div style = "width :230px; height : 180px;  display : inline; ">										
+										<p style = "position : absolute; left : 700px; top : 850px;font-size : 15px;">수량 :</p><span class = "ordernum">1</span>
+									
+									</div> <!-- 개수 -->
+									<div  style = "width :230px; height : 180px;  display : inline; ">
+										<i class = "cash">21,000</i> <span style = "position : absolute; left : 900px; top : 846px;font-size : 23px;"> <i>원</i></span>
+										<div>
+											<a href = "" style = "position : absolute; left : 700px; top : 910px;"><p>연관 강의 보러가기</p></a>
+										</div>
+										<div>
+											<input type = "checkbox" style = "position : absolute; left : 700px; top :967px;">
+											<p style = "position : absolute; left : 730px; top : 960px;">연관 강의 함께 구매하기</p>
+										</div>
+									</div> <!-- 가격 -->																								
+								</div>							
+							</li>												
+						</ul>
+					
+					
+					
+					</div>											
+					
+					<div class = "right_order" style = "width : 320px; height : 772px; position : absolute; top : 300px; right : 450px;">
+						<div class= "benefit">
+							<h4 style = "text-align : left">적립혜택</h4>
+							<div>
+								<p class = "point" style = "text-align : left;">적립 혜택이 없습니다.</p>
+							</div>
+						</div>
+						<div class = "amount">
+							<div class = "expected">
+								<h4 style = "text-align : left;">
+									결제 예정금액
+								</h4>
+							</div>
+							<div class = "order_cash">
+								<div style = "width : 300px; height : 35px; margin-top : 25px;">
+									<h4 style = "float : left;">상품금액</h4>
+									<h5 style = "float : right; margin-top:5px;" class = "realcash">21,000</h5>
+								</div>
+								<div style = "width : 300px; height : 35px; margin-top : 15px;">
+									<h4 style = "float : left;">배송금액</h4>
+									<h5 style = "float : right; margin-top:5px;" class = "passport">무료</h5>
+								</div>
+								<div style = "width : 300px; height : 35px; margin-top : 15px;">
+									<h4 style = "float : left;">할인금액</h4>
+									<h5 style = "float : right; margin-top:5px;" class = "discount">0</h5>
+								</div>
+								<div style = "width : 300px; height : 35px; margin-top : 15px;">
+									<h4 style = "float : left; color : red; margin-top : 10px;">합계</h4>
+									<script type = "module" src = "${contextpath}/main.do">document.write(sum)</script>
+									<script type='text/javascript' src='${contextpath}/main.do'>document.console(sum)</script>
+									<!-- <script type="text/javascript">document.console(sum);</script> -->
+									<!-- <h2 >합계 <span style =  'color : red' class ="totalprice"></span> 원</h2> -->
+									<h2 style = "float : right; margin-top:5px; color : red;" class = "totalrealcash">21,000</h2> 
+								</div>
+								
+								<p style = "margin-top : 15px; width : 300px; font-size : 12px;">
+								 	약관을 확인하였으며, 결제에 동의합니다.
+								</p>
+								<div>
+									<button type="button" class="btn btn-danger" style = "width : 250px; background-color : #ADD8E6; color : white; border-color : #ADD8E6; "><h2 class= "totalrealcount">21,000</h2>원 구매하기</button>
+								</div>
+							</div>
+							
+						</div>
+						
+						
+				
+					</div>
+					
+				
+					
+					
+				</div>			
+				<br><br>			
+				<div>
+					<h2 style = "text-align : left;">결제방법</h2>				
+				</div>
+				<br><br>
+				
+				<div class = "tab_container" style = "position : absolute; left : 300px; top : 1030px;margin-top : 8px;">													
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+						<label class="form-check-label" for="inlineRadio1">신용카드(일반)</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+						<label class="form-check-label" for="inlineRadio2">신용카드(법인)</label>
+					</div>			
+				</div>
+				
+				<div>
+					<h2 style = "text-align : left;">카드선택</h2>	
+				</div>
+				<div>
+					<select style = "float : left; width : 150px; height : 20px;">
+						<option>선택해주세요</option>
+						<option>하나</option>
+						<option>농협</option>
+						<option>신한</option>
+						<option>카카오</option>
+						<option>네이버페이</option>
+						<option>국민</option>
+						<option>우체국</option>											
+					</select>
+				</div>																																														
+			</div><!-- 왼쪽 전체박스 닫기 -->				
+		</div>
+
+	
+</body>
+</html>

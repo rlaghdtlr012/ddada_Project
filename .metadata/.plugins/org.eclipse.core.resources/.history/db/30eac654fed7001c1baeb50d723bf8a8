@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.mySpring.myapp.member.vo.MemberVO" alias="memberVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.MemberVOTest" alias="memberVOTest" />
+		
+		<typeAlias type="com.mySpring.myapp.board.vo.ArticleVO" alias="articleVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.ImageVO" alias="imageVO" />
+
+		<typeAlias type="com.mySpring.myapp.board.vo.TakeLectureVO" alias="takeLectureVO" />
+		
+		
+		
+		<!-- DDADA DB에 맞춘 VO 파일들 -->
+		
+		<!-- board -->
+		<typeAlias type="com.mySpring.myapp.board.vo.TakeLectureListVO"  alias="takeLectureListVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.UserPurchaseVO"  alias="userPurchaseVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.UserQAVO"  alias="userQAVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.UserReviewVO"  alias="userReviewVO" />
+		
+		<!-- 준혁 파트 -->
+		<!-- 카톡으로 준 건 com.ddada.myapp.board.vo.LicenseTalkVO"  alias="LicenseTalkVO" /> -->
+		<typeAlias type="com.mySpring.myapp.board.vo.LicenseTalkVO"  alias="LicenseTalkVO" />
+		
+		<!-- member -->
+		<typeAlias type="com.mySpring.myapp.member.vo.StudentVO"  alias="studentVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.LectureVO"  alias="lectureVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.InstructorVO"  alias="instructorVO" />
+		
+		   <typeAlias type="com.mySpring.myapp.member.vo.TakeBookVO" alias = "takeBookVO"/>
+		
+	</typeAliases>
+</configuration>

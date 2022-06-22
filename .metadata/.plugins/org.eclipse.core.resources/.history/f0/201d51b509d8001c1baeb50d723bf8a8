@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="/board/mapForm" extends="baseLayout">
+       <put-attribute name="title" value="Ddada 지도" />
+       <put-attribute name="body" value="/WEB-INF/views/board/mapForm.jsp" />
+       <put-attribute name="sideright" value="/WEB-INF/views/common/sideRight.jsp" />
+    </definition>
+	
+	<definition name="/board/listArticles" extends="baseLayout">
+	      <put-attribute name="title" value="글목록창" />
+	      <put-attribute name="body" value="/WEB-INF/views/board/listArticles.jsp" />
+	</definition>
+	
+	<definition name="/board/articleForm" extends="baseLayout">
+		<put-attribute name="title" value="글쓰기창" />
+		<put-attribute name="body" value="/WEB-INF/views/board/articleForm.jsp" />
+	</definition>
+	
+	<definition name="/board/viewArticle" extends="baseLayout">
+	    <put-attribute name="title" value="글상세창" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/viewArticle.jsp" />
+  	</definition>
+  	
+  	<definition name="/board/takeClassList" extends="baseLayout">
+	    <put-attribute name="title" value="수강 중인 강좌 창" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/takeClassList.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/reviewForm" extends="baseLayout">
+	    <put-attribute name="title" value="리뷰 작성" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/reviewForm.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	
+  	<definition name="/board/purchaseHistory" extends="baseLayout">
+	    <put-attribute name="title" value="수강 내역" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/purchaseHistory.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/listReview" extends="baseLayout">
+	    <put-attribute name="title" value="리뷰 내역" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/listReview.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/viewReview" extends="baseLayout">
+	    <put-attribute name="title" value="리뷰 보기" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/viewReview.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/consultationHistory" extends="baseLayout">
+	    <put-attribute name="title" value="상담 내역" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/consultationHistory.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+
+  	<definition name="/board/modProfile" extends="baseLayout">
+	    <put-attribute name="title" value="내 설정" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/modProfile.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	
+  	<definition name="/board/userPurchaseList" extends="baseLayout">
+	    <put-attribute name="title" value="결제 내역" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/userPurchaseList.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	
+  	<definition name="/board/consultationHistory" extends="baseLayout">
+	    <put-attribute name="title" value="내 문의 내역" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/consultationHistory.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- 헤더의 카테고리 이동을 위한 테스트 코드 -->
+  	<definition name="/board/lecture" extends="baseLayout">
+	    <put-attribute name="title" value="강좌 Ddada" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/lecture.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/certification" extends="baseLayout">
+	    <put-attribute name="title" value="자격증 Ddada" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/certification.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/book" extends="baseLayout">
+	    <put-attribute name="title" value="도서 Ddada" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/book.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	<definition name="/board/community" extends="baseLayout">
+	    <put-attribute name="title" value="커뮤니티 Ddada" />
+	    <put-attribute name="body" value="/WEB-INF/views/board/community.jsp" />
+	    <put-attribute name="sideleft" value="/WEB-INF/views/common/side.jsp" />
+  	</definition>
+  	
+  	
+  	
+  	
+  	
+  	<!-- 자격증 Ddada 파트 -->
+   <definition name="/board/informationProcessing" extends="baseLayout">
+      <put-attribute name="title" value="정보처리기사" />
+      <put-attribute name="body" value="/WEB-INF/views/board/informationProcessing.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/certificateInfo" extends="baseLayout">
+      <put-attribute name="title" value="자격증정보" />
+      <put-attribute name="body" value="/WEB-INF/views/board/certificateInfo.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/sqld" extends="baseLayout">
+      <put-attribute name="title" value="sqld" />
+      <put-attribute name="body" value="/WEB-INF/views/board/sqld.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/MSAzure" extends="baseLayout">
+      <put-attribute name="title" value="MSAzure" />
+      <put-attribute name="body" value="/WEB-INF/views/board/MSAzure.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/networkManagement" extends="baseLayout">
+      <put-attribute name="title" value="네트워크 관리사" />
+      <put-attribute name="body" value="/WEB-INF/views/board/networkManagement.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/linuxMaster" extends="baseLayout">
+      <put-attribute name="title" value="리눅스 마스터" />
+      <put-attribute name="body" value="/WEB-INF/views/board/linuxMaster.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/informationSecure" extends="baseLayout">
+      <put-attribute name="title" value="정보보안산업기사" />
+      <put-attribute name="body" value="/WEB-INF/views/board/informationSecure.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/amazonAWS" extends="baseLayout">
+      <put-attribute name="title" value="아마존AWS" />
+      <put-attribute name="body" value="/WEB-INF/views/board/amazonAWS.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/informationManage" extends="baseLayout">
+      <put-attribute name="title" value="정보관리기술사" />
+      <put-attribute name="body" value="/WEB-INF/views/board/informationManage.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/computerUse" extends="baseLayout">
+      <put-attribute name="title" value="컴퓨터활용능력" />
+      <put-attribute name="body" value="/WEB-INF/views/board/computerUse.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   <definition name="/board/word" extends="baseLayout">
+      <put-attribute name="title" value="워드프로세서" />
+      <put-attribute name="body" value="/WEB-INF/views/board/word.jsp" />
+      <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCert.jsp" />
+   </definition>
+   
+   
+   
+   <!-- 커뮤니티 Ddada 파트 -->
+   <definition name="/board/FreeTalkList" extends="baseLayout">
+    <put-attribute name="title" value="쉬어가는 TALK" />
+    <put-attribute name="body" value="/WEB-INF/views/board/FreeTalkList.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+   </definition>
+  
+  <definition name="/board/LicenseTalkView" extends="baseLayout">
+    <put-attribute name="title" value="자격증 TALK 게시글" />
+    <put-attribute name="body" value="/WEB-INF/views/board/LicenseTalkView.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  <definition name="/board/LicenseTalkWrite" extends="baseLayout">
+    <put-attribute name="title" value="자격증 TALK 게시글 작성" />
+    <put-attribute name="body" value="/WEB-INF/views/board/LicenseTalkWrite.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  <definition name="/board/LicenseTalkList" extends="baseLayout">
+    <put-attribute name="title" value="자격증 TALK" />
+    <put-attribute name="body" value="/WEB-INF/views/board/LicenseTalkList.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  <definition name="/board/ask" extends="baseLayout">
+    <put-attribute name="title" value="1:1 문의" />
+    <put-attribute name="body" value="/WEB-INF/views/board/ask.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  <definition name="/board/ask2" extends="baseLayout">
+    <put-attribute name="title" value="상담 내용 전송 완료" />
+    <put-attribute name="body" value="/WEB-INF/views/board/ask2.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  <definition name="/board/notice" extends="baseLayout">
+    <put-attribute name="title" value="공지사항" />
+    <put-attribute name="body" value="/WEB-INF/views/board/notice.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+
+  <definition name="/board/faq" extends="baseLayout">
+    <put-attribute name="title" value="FAQ" />
+    <put-attribute name="body" value="/WEB-INF/views/board/faq.jsp" />
+    <put-attribute name="sideleft" value="/WEB-INF/views/common/sideCommu.jsp" />
+  </definition>
+  
+  
+   
+</tiles-definitions>

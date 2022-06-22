@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/mySpring/myapp/board/controller/BoardControllerImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/board/dao/BoardDAOImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/board/vo/ArticleVO.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/board/vo/UserReviewVO.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/member/controller/MemberControllerImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/member/dao/MemberDAOImpl.java=UTF-8

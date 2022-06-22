@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+<resultMap id="articlesResult" type="articleVO">
+    <result property="articleNO" column="articleNO" />
+    <result property="parentNO" column="parentNO" />
+    <result property="title" column="title" />
+    <result property="content" column="content" />
+    <result property="writeDate" column="writeDate" />
+    <result property="imageFileName" column="imageFileName" />
+  </resultMap> 
+  <resultMap id="reviewsResult" type="articleVO">
+    <result property="articleNO" column="articleNO" />
+    <result property="parentNO" column="parentNO" />
+    <result property="title" column="title" />
+    <result property="content" column="content" />
+    <result property="writeDate" column="writeDate" />
+    <result property="imageFileName" column="imageFileName" />
+    <result property="LEC_NAME" column="LEC_NAME" />
+  </resultMap> 
+  <resultMap id="takeLectureResult" type="takeLectureVO">
+    <result property="LEC_NUM" column="LEC_NUM" />
+    <result property="LEC_NAME" column="LEC_NAME" />
+    <result property="INSTR_NUM" column="INSTR_NUM" />
+    <result property="INSTR_NAME" column="INSTR_NAME" />
+    <result property="LEC_STARTDATE" column="LEC_STARTDATE" />
+    <result property="LEC_ENDDATE" column="LEC_ENDDATE" />
+    <result property="LEC_PROGRESS" column="LEC_PROGRESS" />
+    <result property="BOOK_NAME" column="BOOK_NAME" />
+    <result property="LEC_SCORE" column="LEC_SCORE" />
+    <result property="LEC_IMAGE" column="LEC_IMAGE" />
+  </resultMap>
+  <resultMap id="userPurchaseResult" type="userPurchaseVO">
+    <result property="BOOK_NUM" column="BOOK_NUM" />
+    <result property="BOOK_NAME" column="BOOK_NAME" />
+    <result property="BOOK_PRICE" column="BOOK_PRICE" />
+    <result property="BOOK_COMPANY" column="BOOK_COMPANY" />
+    <result property="BOOK_DATE" column="BOOK_DATE" />
+  </resultMap>
+  <resultMap id="userQAResult" type="userQAVO">
+    <result property="QA_TITLE" column="QA_TITLE" />
+    <result property="QA_CONTENT" column="QA_CONTENT" />
+    <result property="QA_REGDATE" column="QA_REGDATE" />
+  </resultMap>
+  <resultMap id="userReviewResult" type="userReviewVO">
+  	<result property="REVIEW_NO" column="REVIEW_NO" />
+  	<result property="PARENT_NO" column="PARENT_NO" />
+  	<result property="LEC_NAME" column="LEC_NAME" />
+    <result property="REVIEW_TITLE" column="REVIEW_TITLE" />
+    <result property="REVIEW_CONTENT" column="REVIEW_CONTENT" />
+    <result property="REVIEW_DATE" column="REVIEW_DATE" />
+    
+    <result property="RATING" column="RATING" />
+  </resultMap> 
+  
+  <resultMap id="imgResult" type="imageVO">
+	  <result property="imageFileNO" column="imageFileNO" />
+	  <result property="articleNO" column="articleNO" />
+	  <result property="imageFileName" column="imageFileName" />
+ </resultMap>
+ 
+ <resultMap id="takeLectureListResult" type="takeLectureListVO">
+    <result property="LEC_NUM" column="LEC_NUM" />
+    <result property="LEC_NAME" column="LEC_NAME" />
+    <result property="INSTR_NUM" column="INSTR_NUM" />
+    <result property="INSTR_NAME" column="INSTR_NAME" />
+    <result property="LEC_DATE" column="LEC_DATE" />
+    <result property="LEC_STARTDATE" column="LEC_STARTDATE" />
+    <result property="LEC_ENDDATE" column="LEC_ENDDATE" />
+    <result property="LEC_PROGRESS" column="LEC_PROGRESS" />
+    <result property="BOOK_NAME" column="BOOK_NAME" />
+    <result property="LEC_SCORE" column="LEC_SCORE" />
+    <result property="LEC_IMAGE" column="LEC_IMAGE" />
+  </resultMap>
+
+  <select id="selectAllArticlesList" resultMap="articlesResult"   >
+    <![CDATA[
+      SELECT articleNO, parentNO, title, content, writeDate, imageFileName, id
+      from t_board
+      START WITH  parentNO=0
+      CONNECT BY PRIOR articleNO=parentNO 
+      ORDER SIBLINGS BY articleNO DESC		
+    ]]>
+  </select>
+  <select id="selectAllReviewsList" resultMap="reviewsResult"   >
+    <![CDATA[
+      SELECT articleNO, parentNO, title, content, writeDate, imageFileName, id, LEC_NAME
+      from test_board
+      START WITH  parentNO=0
+      CONNECT BY PRIOR articleNO=parentNO 
+      ORDER SIBLINGS BY articleNO DESC		
+    ]]>
+  </select>
+  
+  <select id="selectAllTakeLectureList" resultMap="takeLectureListResult">
+    <![CDATA[
+      SELECT LEC_NUM, LEC_NAME, INSTR_NUM, INSTR_NAME, LEC_STARTDATE, LEC_ENDDATE,
+             LEC_PROGRESS, BOOK_NAME, ID, LEC_SCORE, LEC_IMAGE
+      from TAKE_LECTURE_LIST
+      ORDER BY LEC_STARTDATE
+    ]]>
+  </select>
+  
+   <select id="selectAllAVGLecProgress" resultMap="takeLectureListResult">
+    <![CDATA[
+      SELECT LEC_NUM, TRUNC(AVG(LEC_PROGRESS), 2) AS AVG_LEC_PROGRESS
+      from take_lecture_list
+      GROUP BY LEC_NUM
+    ]]>
+  </select>
+  
+  <select id="selectAllUserPurchaseList" resultMap="userPurchaseResult">
+    <![CDATA[
+      SELECT BOOK_NUM, BOOK_NAME, BOOK_PRICE, BOOK_DATE, ID
+      from USER_PURCHASE_LIST
+    ]]>
+  </select>
+  
+  <select id="selectAllUserQAList" resultMap="userQAResult">
+    <![CDATA[
+      SELECT QA_TITLE, QA_CONTENT, QA_REGDATE, ID
+      from USER_QA_LIST
+    ]]>
+  </select>
+  
+	<!--단일이미지 추가  -->
+  <insert id="insertNewArticle"  parameterType="java.util.Map">
+	<![CDATA[
+		INSERT into t_board(articleNO,  title, content, imageFileName, id)
+		VALUES(#{articleNO},#{title},	#{content}, #{imageFileName},	#{id})
+	]]>
+  </insert>
+	
+  <!-- myBatis도 id는 유일한 값
+	   아래 max()함수 값이 null을 리턴해서 글을 쓰면 하얀 창이 뜨게 된다...
+	   즉, resultType이 int가 아닌 null이므로
+	   SELECT  max(articleNO)+1 from t_board -->
+  	<select id="selectNewArticleNO" resultType="int"  >
+		<![CDATA[
+			SELECT nvl(max(articleNO), 0)+1 from t_board		
+		]]>
+	</select>
+	
+   <select id="selectArticle" resultType="articleVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from t_board
+      where articleNO = #{articleNO}		
+    ]]>
+  </select>
+<!--   <select id="selectReview" resultType="takeLectureVO"   parameterType="String">
+    <![CDATA[
+      SELECT * from take_lecture
+      where LEC_NAME = #{LEC_NAME}	
+    ]]>
+  </select> -->
+  
+  <select id="selectTakeLectureList" resultType="takeLectureListVO"   parameterType="String">
+    <![CDATA[
+      SELECT *
+      from TAKE_LECTURE_LIST
+      where STUDENT_ID = #{STUDENT_ID}
+      ORDER BY LEC_STARTDATE
+    ]]>
+  </select>
+  
+  <select id="selectUserPurchaseList" resultType="userPurchaseVO"   parameterType="String">
+    <![CDATA[
+      SELECT *
+      from USER_PURCHASE_LIST
+      where STUDENT_ID = #{STUDENT_ID}
+    ]]>
+  </select>
+  
+  <select id="selectUserQAList" resultType="userQAVO"   parameterType="String">
+    <![CDATA[
+      SELECT *
+      from USER_QA_LIST
+      where STUDENT_ID = #{STUDENT_ID}
+    ]]>
+  </select>
+  
+  <!-- 리뷰를 하나를 클릭할 땐, REVIEW_NO로 조건? -->
+  <select id="selectUserReviewList" resultType="userReviewVO"   parameterType="String">
+    <![CDATA[
+      SELECT *
+      from USER_REVIEW_LIST
+      where STUDENT_ID = #{STUDENT_ID}
+    ]]>
+  </select>
+  
+  <insert id="insertNewReview"  parameterType="java.util.Map">
+		<![CDATA[
+			INSERT into USER_REVIEW_LIST(REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, STUDENT_ID, LEC_NAME, RATING)
+			VALUES(#{REVIEW_NO}, #{REVIEW_TITLE}, #{REVIEW_CONTENT}, #{STUDENT_ID}, #{LEC_NAME}, #{RATING})
+		]]>
+  </insert>
+  
+  <select id="selectNewReviewNO" resultType="int"  >
+	<![CDATA[
+		SELECT nvl(max(REVIEW_NO), 0) + 1 from USER_REVIEW_LIST
+	]]>
+  </select>
+  
+  <select id="selectUserReview" resultType="userReviewVO"   parameterType="String">
+    <![CDATA[
+      SELECT * from USER_REVIEW_LIST
+      where REVIEW_NO = #{REVIEW_NO}
+    ]]>
+  </select>
+  
+  <!-- LEC_NAME = #{LEC_NAME} -->
+  <update id="updateReview"  parameterType="java.util.Map">
+			update USER_REVIEW_LIST
+			set REVIEW_TITLE = #{REVIEW_TITLE},
+			RATING = #{RATING},
+			REVIEW_CONTENT = #{REVIEW_CONTENT}
+			where REVIEW_NO = #{REVIEW_NO}
+  </update>
+  
+  <delete id="deleteReview"  parameterType="String">
+    <![CDATA[
+      delete from USER_REVIEW_LIST
+      where REVIEW_NO in (
+         SELECT REVIEW_NO FROM USER_REVIEW_LIST
+         START WITH REVIEW_NO = #{REVIEW_NO}
+         CONNECT BY PRIOR  REVIEW_NO = PARENT_NO )
+    ]]>      
+  </delete>
+  
+  <!-- test용 쿼리문 -->
+	<insert id="insertNewArticleTest"  parameterType="java.util.Map">
+		<![CDATA[
+			INSERT into test_board(articleNO,  title, content, imageFileName, id, LEC_NAME)
+			VALUES(#{articleNO}, #{title},	#{content}, #{imageFileName}, #{id}, #{LEC_NAME})
+		]]>      
+	</insert>
+	
+  <!-- myBatis도 id는 유일한 값
+	   아래 max()함수 값이 null을 리턴해서 글을 쓰면 하얀 창이 뜨게 된다...
+	   즉, resultType이 int가 아닌 null이므로
+	   SELECT  max(articleNO)+1 from t_board -->
+    <select id="selectNewArticleNOTest" resultType="int"  >
+		<![CDATA[
+			SELECT nvl(max(articleNO), 0)+1 from test_board		
+		]]>
+	</select>
+	
+	<select id="selectArticleTest" resultType="articleVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from test_board
+      where articleNO = #{articleNO}		
+    ]]>
+  </select>
+  
+<!--   <update id="updateArticle"  parameterType="java.util.Map">
+			update t_board
+			set title=#{title},	 
+			content=#{content},
+			LEC_NAME=#{LEC_NAME}
+			 <if test="imageFileName!='' and imageFileName!=null">
+			  , imageFileName=#{imageFileName}
+			</if>
+			where articleNO=#{articleNO}
+	</update> -->
+	
+<!-- 	<delete id="deleteArticle"  parameterType="int">
+    <![CDATA[
+      delete from t_board
+      where articleNO in (
+         SELECT articleNO FROM  t_board
+         START WITH articleNO = #{articleNO}
+         CONNECT BY PRIOR  articleNO = parentNO )
+    ]]>      
+  </delete> -->
+
+  <select id="selectNewImageFileNO" resultType="int"  >
+    <![CDATA[
+      SELECT  nvl(max(imageFileNO),0) from t_imageFile		
+    ]]>
+  </select>
+	
+
+  <select  id="selectImageFileList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+      SELECT * from t_imageFile
+      where articleNO=#{articleNO}	
+    ]]>
+  </select> 
+  
+  
+  
+  <!-- 준혁 파트 -->
+  <!-- 게시판 글 작성 -->
+<!-- 01. 게시글 전체 목록 조회 및 검색조회까지 -->
+   <select id="listAll" resultType="com.mySpring.myapp.board.vo.LicenseTalkVO">
+      SELECT LICENSETALKNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT
+      FROM L_TALK
+      <!-- WHERE절을 include 태그로 삽입 -->
+      <include refid="search"></include>
+      ORDER BY LICENSETALKNO DESC, REGDATE DESC
+   </select>
+   <!-- 01_02. 게시글 레코드 갯수 -->
+   <select id="countLicenseTalk" resultType="int">
+      SELECT COUNT(*) FROM L_TALK
+      <!-- WHERE절을 include 태그로 삽입 -->
+      <include refid="search"></include>
+   </select>
+
+   <!-- 02. 게시글 작성 -->
+   <insert id="insert">
+      INSERT INTO L_TALK (
+        LICENSETALKNO, 
+        TITLE, 
+        CONTENT, 
+        WRITER
+      ) VALUES (
+        (SELECT NVL(MAX(LICENSETALKNO)+1, 1)FROM L_TALK),
+        #{TITLE},
+        #{CONTENT},
+        #{WRITER}
+      )
+   </insert>
+   <!--03. 게시글 상세보기 조회 -->
+   <select id="view" resultType="com.mySpring.myapp.board.vo.LicenseTalkVO">
+      SELECT * FROM L_TALK 
+      WHERE LICENSETALKNO = #{LICENSETALKNO}
+   </select>
+   <!-- 04. 게시글 조회수 증가처리 -->
+   <update id="increaseViewcnt">
+      UPDATE L_TALK SET VIEWCNT = VIEWCNT + 1 
+      WHERE LICENSETALKNO = #{LICENSETALKNO}
+   </update>
+   <!-- 05. 게시글 수정처리 -->
+   <update id="updateArticle">
+      UPDATE L_TALK SET
+         TITLE = #{TITLE},
+         CONTENT = #{CONTENT},
+         WRITER = #{WRITER}
+      WHERE LICENSETALKNO = #{LICENSETALKNO}
+   </update>
+   <!-- 06. 게시글 삭제처리 -->
+   <delete id="deleteArticle">
+      DELETE FROM L_TALK
+      WHERE LICENSETALKNO = #{LICENSETALKNO}
+   </delete>
+
+   <!-- sql code 조각 -->
+   <!-- 반복되는 sql의 일부를 sql태그를 이용하여 따로 빼둘수 있다. -->
+   <sql id="search">
+      <choose>
+         <!-- 검색옵션이 전체 검색일 경우 -->
+         <when test="searchOption == 'all'">
+            WHERE WRITER like '%'||#{keyword}||'%'
+            OR CONTENT like '%'||#{keyword}||'%'
+            OR TITLE like '%'||#{keyword}||'%'
+         </when>
+         <!-- 전체 검색이 아닐 경우 -->
+         <otherwise>
+            WHERE ${searchOption} like '%'||#{keyword}||'%'
+         </otherwise>
+      </choose>
+   </sql>
+</mapper>
